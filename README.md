@@ -29,7 +29,7 @@ Aktifkan Environment untuk download library dan menjalankan app.
 ```
 Download library yang sudah berada di ```requirements.txt```
 ```bash
-pip install -r requirements.txt
+pip install -r requirement.txt
 ```
 ## PENGGUNAAN
 Jalankan ```app.py```
