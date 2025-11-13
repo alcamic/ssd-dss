@@ -1,0 +1,90 @@
+1<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AHP - Pairwise Comparison</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🔷 Pemilihan SSD NVMe - Sistem Pendukung Keputusan</h1>
+            <p class="subtitle">Page 1: AHP (Analytical Hierarchy Process) - Pembobotan Kriteria</p>
+        </header>
+
+        <div class="content">
+            <!-- Progress Bar -->
+            <div class="progress-bar">
+                <div class="progress-step active">Step 1: AHP Weighting</div>
+                <div class="progress-step">Step 2: Data Entry</div>
+                <div class="progress-step">Step 3: TOPSIS Ranking</div>
+            </div>
+
+            <!-- Criteria Information -->
+            <div class="criteria-info">
+                <h3 style="color: #667eea; margin-bottom: 15px;">📋 Kriteria untuk Pemilihan SSD NVMe</h3>
+                <div class="criteria-grid">
+                    <div class="criteria-item">
+                        <strong>Interface</strong>
+                        <span class="badge badge-benefit">Benefit</span>
+                        <p style="font-size: 0.85em; margin-top: 5px;">PCIe Generation</p>
+                    </div>
+                    <div class="criteria-item">
+                        <strong>Capacity</strong>
+                        <span class="badge badge-benefit">Benefit</span>
+                        <p style="font-size: 0.85em; margin-top: 5px;">Storage in GB</p>
+                    </div>
+                    <div class="criteria-item">
+                        <strong>NAND Type</strong>
+                        <span class="badge badge-benefit">Benefit</span>
+                        <p style="font-size: 0.85em; margin-top: 5px;">SLC > MLC > TLC > QLC</p>
+                    </div>
+                    <div class="criteria-item">
+                        <strong>Read Speed</strong>
+                        <span class="badge badge-benefit">Benefit</span>
+                        <p style="font-size: 0.85em; margin-top: 5px;">MB/s</p>
+                    </div>
+                    <div class="criteria-item">
+                        <strong>Write Speed</strong>
+                        <span class="badge badge-benefit">Benefit</span>
+                        <p style="font-size: 0.85em; margin-top: 5px;">MB/s</p>
+                    </div>
+                    <div class="criteria-item">
+                        <strong>Price</strong>
+                        <span class="badge badge-cost">Cost</span>
+                        <p style="font-size: 0.85em; margin-top: 5px;">Lower is better</p>
+                    </div>
+                    <div class="criteria-item">
+                        <strong>Warranty</strong>
+                        <span class="badge badge-benefit">Benefit</span>
+                        <p style="font-size: 0.85em; margin-top: 5px;">Years</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- AHP Pairwise Comparison -->
+            <div class="section">
+                <h2 class="section-title">Perbandingan Berpasangan Kriteria</h2>
+                <div class="info-box">
+                    <strong>📊 Skala Saaty (Intensitas Kepentingan):</strong><br>
+                    • <strong>1</strong> = Sama Penting (Equal)<br>
+                    • <strong>2</strong> = Antara Sama dan Sedikit Lebih Penting<br>
+                    • <strong>3</strong> = Sedikit Lebih Penting (Moderate)<br>
+                    • <strong>4</strong> = Antara Sedikit dan Lebih Penting<br>
+                    • <strong>5</strong> = Lebih Penting (Strong)<br>
+                    • <strong>6</strong> = Antara Lebih dan Sangat Penting<br>
+                    • <strong>7</strong> = Sangat Penting (Very Strong)<br>
+                    • <strong>8</strong> = Antara Sangat dan Mutlak Penting<br>
+                    • <strong>9</strong> = Mutlak Penting (Extreme)<br><br>
+                    <strong>📝 Cara Pengisian:</strong> Pilih angka yang menunjukkan seberapa penting kriteria KIRI dibanding kriteria KANAN. Jika kriteria KANAN lebih penting, pilih angka di sisi kanan.
+                </div>
+                <div id="comparisonContainer"></div>
+                <button onclick="calculateAHP()">🔢 Calculate Weights (AHP)</button>
+                <div id="ahpResults" class="results" style="display:none;"></div>
+            </div>
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='scripts/ahp.js') }}"></script>
+</body>
+</html>
