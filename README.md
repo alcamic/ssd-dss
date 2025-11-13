@@ -40,5 +40,5 @@ python app.py
 Proyek ini merupakan hasil kolabarosi kelompok 2 Sistem Pendukung Keputusan di **[Jurusan Teknik Informatika dan Komputer](https://www.jtikunm.com/)** **[Universitas Negeri Makassar](https://unm.ac.id/)**:
 
 * [A. Ahmad Fadil](https://github.com/alcamic)
-* Muhammad Agung
+* [Muhammad Agung](https://github.com/agungg011)
 * Farrel Hadiputra Sutjianto
