@@ -3,620 +3,150 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SSD Selection - Decision Support System</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            padding: 20px;
-        }
-
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
-            overflow: hidden;
-        }
-
-        header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 30px;
-            text-align: center;
-        }
-
-        h1 {
-            font-size: 2.5em;
-            margin-bottom: 10px;
-        }
-
-        .subtitle {
-            font-size: 1.1em;
-            opacity: 0.9;
-        }
-
-        .content {
-            padding: 30px;
-        }
-
-        .section {
-            margin-bottom: 40px;
-        }
-
-        .section-title {
-            font-size: 1.8em;
-            color: #667eea;
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-            border-bottom: 3px solid #667eea;
-        }
-
-        .input-group {
-            margin-bottom: 20px;
-        }
-
-        label {
-            display: block;
-            font-weight: bold;
-            margin-bottom: 8px;
-            color: #333;
-        }
-
-        input[type="number"], input[type="text"], select {
-            width: 100%;
-            padding: 12px;
-            border: 2px solid #ddd;
-            border-radius: 8px;
-            font-size: 1em;
-            transition: border-color 0.3s;
-        }
-
-        input:focus, select:focus {
-            outline: none;
-            border-color: #667eea;
-        }
-
-        button {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            border: none;
-            padding: 12px 30px;
-            font-size: 1em;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: transform 0.2s, box-shadow 0.2s;
-            margin-right: 10px;
-            margin-bottom: 10px;
-        }
-
-        button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
-        }
-
-        button:active {
-            transform: translateY(0);
-        }
-
-        button.secondary {
-            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
-        }
-
-        .matrix-container {
-            overflow-x: auto;
-            margin: 20px 0;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            background: white;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-
-        th, td {
-            padding: 12px;
-            text-align: center;
-            border: 1px solid #ddd;
-        }
-
-        th {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            font-weight: bold;
-        }
-
-        td input, td select {
-            width: 100%;
-            padding: 8px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            text-align: center;
-        }
-
-        .results {
-            background: #f8f9fa;
-            padding: 20px;
-            border-radius: 8px;
-            margin-top: 20px;
-        }
-
-        .result-item {
-            margin: 10px 0;
-            padding: 10px;
-            background: white;
-            border-radius: 5px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-
-        .success {
-            color: #28a745;
-            font-weight: bold;
-        }
-
-        .warning {
-            color: #ffc107;
-            font-weight: bold;
-        }
-
-        .error {
-            color: #dc3545;
-            font-weight: bold;
-        }
-
-        .ranking-table {
-            margin-top: 20px;
-        }
-
-        .rank-1 { background-color: #ffd700 !important; }
-        .rank-2 { background-color: #c0c0c0 !important; }
-        .rank-3 { background-color: #cd7f32 !important; }
-
-        .info-box {
-            background: #e7f3ff;
-            border-left: 4px solid #2196F3;
-            padding: 15px;
-            margin: 20px 0;
-            border-radius: 4px;
-        }
-
-        .criteria-info {
-            background: #f0f8ff;
-            border: 2px solid #667eea;
-            padding: 20px;
-            border-radius: 8px;
-            margin-bottom: 20px;
-        }
-
-        .criteria-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
-            margin-top: 15px;
-        }
-
-        .criteria-item {
-            background: white;
-            padding: 10px;
-            border-radius: 5px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-
-        .criteria-item strong {
-            color: #667eea;
-            display: block;
-            margin-bottom: 5px;
-        }
-
-        .alternative-card {
-            background: #f8f9fa;
-            border: 2px solid #ddd;
-            border-radius: 8px;
-            padding: 20px;
-            margin-bottom: 20px;
-        }
-
-        .alternative-card h4 {
-            color: #667eea;
-            margin-bottom: 15px;
-            font-size: 1.3em;
-        }
-
-        .form-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
-        }
-
-        .form-field {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .form-field label {
-            font-size: 0.9em;
-            margin-bottom: 5px;
-        }
-
-        .badge {
-            display: inline-block;
-            padding: 4px 8px;
-            border-radius: 4px;
-            font-size: 0.85em;
-            font-weight: bold;
-            margin-left: 8px;
-        }
-
-        .badge-benefit {
-            background: #d4edda;
-            color: #155724;
-        }
-
-        .badge-cost {
-            background: #f8d7da;
-            color: #721c24;
-        }
-    </style>
+    <title>Sistem Pendukung Keputusan - SSD NVMe</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/landing.css') }}">
 </head>
 <body>
     <div class="container">
-        <header>
-            <h1> Pemilihan SSD NVMe - Sistem Pendukung Keputusan</h1>
-            <p class="subtitle">AHP (Analytical Hierarchy Process) untuk Pembobotan & TOPSIS untuk Perankingan</p>
+        <header class="hero-header">
+            <h1 class="hero-title">Sistem Pendukung Keputusan</h1>
+            <h2 class="hero-subtitle">Pemilihan SSD NVMe Terbaik</h2>
+            <p class="hero-description">Menggunakan Metode AHP-TOPSIS untuk Keputusan yang Optimal</p>
         </header>
 
         <div class="content">
-            <!-- Criteria Information -->
-            <div class="criteria-info">
-                <h3 style="color: #667eea; margin-bottom: 15px;">Kriteria untuk Pemilihan SSD NVMe</h3>
-                <div class="criteria-grid">
-                    <div class="criteria-item">
-                        <strong>Interface</strong>
-                        <span class="badge badge-benefit">Benefit</span>
-                        <p style="font-size: 0.85em; margin-top: 5px;">PCIe Generation (Higher is better)</p>
+            <!-- Method Information -->
+            <section class="method-section">
+                <h3 class="section-title">Tentang Sistem</h3>
+                <div class="method-grid">
+                    <div class="method-card">
+                        <h4>AHP</h4>
+                        <p class="method-name">Analytical Hierarchy Process</p>
+                        <p class="method-desc">Metode untuk menentukan bobot kepentingan setiap kriteria melalui perbandingan berpasangan</p>
                     </div>
-                    <div class="criteria-item">
-                        <strong>Capacity</strong>
-                        <span class="badge badge-benefit">Benefit</span>
-                        <p style="font-size: 0.85em; margin-top: 5px;">Storage in GB</p>
-                    </div>
-                    <div class="criteria-item">
-                        <strong>NAND Type</strong>
-                        <span class="badge badge-benefit">Benefit</span>
-                        <p style="font-size: 0.85em; margin-top: 5px;">SLC > MLC > TLC > QLC</p>
-                    </div>
-                    <div class="criteria-item">
-                        <strong>Read Speed</strong>
-                        <span class="badge badge-benefit">Benefit</span>
-                        <p style="font-size: 0.85em; margin-top: 5px;">MB/s (Higher is better)</p>
-                    </div>
-                    <div class="criteria-item">
-                        <strong>Write Speed</strong>
-                        <span class="badge badge-benefit">Benefit</span>
-                        <p style="font-size: 0.85em; margin-top: 5px;">MB/s (Higher is better)</p>
-                    </div>
-                    <div class="criteria-item">
-                        <strong>Price</strong>
-                        <span class="badge badge-cost">Cost</span>
-                        <p style="font-size: 0.85em; margin-top: 5px;">In currency (Lower is better)</p>
-                    </div>
-                    <div class="criteria-item">
-                        <strong>Warranty</strong>
-                        <span class="badge badge-benefit">Benefit</span>
-                        <p style="font-size: 0.85em; margin-top: 5px;">Years (Higher is better)</p>
+                    <div class="method-card">
+                        <h4>TOPSIS</h4>
+                        <p class="method-name">Technique for Order Preference by Similarity to Ideal Solution</p>
+                        <p class="method-desc">Metode untuk meranking alternatif berdasarkan kedekatan dengan solusi ideal</p>
                     </div>
                 </div>
-            </div>
+            </section>
 
-            <!-- Step 1: Number of Alternatives -->
-            <div class="section">
-                <h2 class="section-title">Step 1: Konfigurasi</h2>
-                <div class="input-group">
-                    <label for="numAlternatives">Jumlah Alternatif SSD yang Dapat Dibandingkan:</label>
-                    <input type="number" id="numAlternatives" min="2" max="20" value="5" style="max-width: 200px;">
+            <!-- Assessment Criteria -->
+            <section class="criteria-section">
+                <h3 class="section-title">Kriteria Penilaian</h3>
+                <div class="criteria-list">
+                    <div class="criteria-card">
+                        <span class="criteria-number">1</span>
+                        <div class="criteria-content">
+                            <h4>Interface <span class="badge badge-benefit">Benefit</span></h4>
+                            <p>PCIe Generation (3.0, 4.0, 5.0)</p>
+                        </div>
+                    </div>
+                    <div class="criteria-card">
+                        <span class="criteria-number">2</span>
+                        <div class="criteria-content">
+                            <h4>Capacity <span class="badge badge-benefit">Benefit</span></h4>
+                            <p>Kapasitas penyimpanan dalam GB</p>
+                        </div>
+                    </div>
+                    <div class="criteria-card">
+                        <span class="criteria-number">3</span>
+                        <div class="criteria-content">
+                            <h4>NAND Type <span class="badge badge-benefit">Benefit</span></h4>
+                            <p>Tipe NAND (SLC > MLC > TLC > QLC)</p>
+                        </div>
+                    </div>
+                    <div class="criteria-card">
+                        <span class="criteria-number">4</span>
+                        <div class="criteria-content">
+                            <h4>Read Speed <span class="badge badge-benefit">Benefit</span></h4>
+                            <p>Kecepatan baca dalam MB/s</p>
+                        </div>
+                    </div>
+                    <div class="criteria-card">
+                        <span class="criteria-number">5</span>
+                        <div class="criteria-content">
+                            <h4>Write Speed <span class="badge badge-benefit">Benefit</span></h4>
+                            <p>Kecepatan tulis dalam MB/s</p>
+                        </div>
+                    </div>
+                    <div class="criteria-card">
+                        <span class="criteria-number">6</span>
+                        <div class="criteria-content">
+                            <h4>Price <span class="badge badge-cost">Cost</span></h4>
+                            <p>Harga dalam Rupiah (lebih rendah lebih baik)</p>
+                        </div>
+                    </div>
+                    <div class="criteria-card">
+                        <span class="criteria-number">7</span>
+                        <div class="criteria-content">
+                            <h4>Warranty <span class="badge badge-benefit">Benefit</span></h4>
+                            <p>Masa garansi dalam tahun</p>
+                        </div>
+                    </div>
                 </div>
-                <button onclick="generateForms()">Generate Forms</button>
-            </div>
+            </section>
 
-            <!-- Step 2: AHP Pairwise Comparison -->
-            <div class="section" id="ahpSection" style="display:none;">
-                <h2 class="section-title">Step 2:  AHP - Matriks Perbandingan </h2>
+            <!-- Usage Flow -->
+            <section class="flow-section">
+                <h3 class="section-title">Alur Penggunaan Sistem</h3>
+                <div class="flow-steps">
+                    <div class="flow-step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h4>Pembobotan Kriteria (AHP)</h4>
+                            <p>Lakukan perbandingan berpasangan antar kriteria menggunakan skala Saaty (1-9) untuk menentukan tingkat kepentingan relatif setiap kriteria</p>
+                        </div>
+                    </div>
+                    <div class="flow-arrow">↓</div>
+                    <div class="flow-step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h4>Input Data Alternatif</h4>
+                            <p>Masukkan data spesifikasi dari setiap alternatif SSD NVMe yang akan dibandingkan (minimal 2 alternatif)</p>
+                        </div>
+                    </div>
+                    <div class="flow-arrow">↓</div>
+                    <div class="flow-step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h4>Perhitungan TOPSIS</h4>
+                            <p>Sistem akan menghitung dan meranking alternatif berdasarkan 
+                                nilai kedekatan dengan solusi ideal positif dan terjauh dari solusi ideal negatif</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Call to Action -->
+            <section class="cta-section">
+                <button class="cta-button" onclick="startDecision()">
+                    Mulai Analisis Sekarang
+                </button>
+                <p class="cta-note">Proses memakan waktu sekitar 5-10 menit</p>
+            </section>
+
+            <!-- Additional Information -->
+            <section class="info-section">
                 <div class="info-box">
-                    <strong>Intensitas Kepentingan:</strong> 1=Sama Penting, 3=Sedikit Lebih Penting, 5=Lebih Penting, 7=Sangat Penting, 9=Mutlak Penting<br>
-                    <strong>Perbandingan Kepentingan:</strong> Seberapa pentingkah kriteria baris dibandingkan dengan kriteria kolom?
+                    <h4>💡 Tips Penggunaan</h4>
+                    <ul>
+                        <li>Pastikan Anda memahami kebutuhan dan prioritas Anda sebelum melakukan pembobotan</li>
+                        <li>Lakukan perbandingan kriteria dengan konsisten untuk hasil yang akurat</li>
+                        <li>Siapkan data spesifikasi SSD yang ingin dibandingkan sebelum memulai dapat berupa file excel</li>
+                        <li>Sistem akan memvalidasi konsistensi pembobotan Anda (CR < 0.1)</li>
+                    </ul>
                 </div>
-                <div class="matrix-container">
-                    <table id="ahpMatrix"></table>
-                </div>
-                <button onclick="calculateAHP()">Calculate Weights (AHP)</button>
-                <div id="ahpResults" class="results" style="display:none;"></div>
-            </div>
-
-            <!-- Step 3: Alternative Input Forms -->
-            <div class="section" id="alternativesSection" style="display:none;">
-                <h2 class="section-title">Step 3: Masukkan Spesifikasi SSD NVMe</h2>
-                <div id="alternativeForms"></div>
-            </div>
-
-            <!-- Step 4: TOPSIS Calculation -->
-            <div class="section" id="topsisSection" style="display:none;">
-                <h2 class="section-title">Step 4: Calculate Rankings</h2>
-                <button class="secondary" onclick="calculateTOPSIS()">🏆 Calculate Rankings (TOPSIS)</button>
-                <div id="topsisResults" class="results" style="display:none;"></div>
-            </div>
+            </section>
         </div>
+
+        <footer class="footer">
+            <p>Sistem Pendukung Keputusan - AHP & TOPSIS Method</p>
+            <p class="footer-note">Dikembangkan oleh Kelompok 2 SPK UNM</p>
+        </footer>
     </div>
 
-    <script>
-        const CRITERIA = ['Interface', 'Capacity', 'NAND Type', 'Read', 'Write', 'Price', 'Warranty'];
-        const NUM_CRITERIA = 7;
-        let numAlternatives = 5;
-        let weights = [];
-
-        function generateForms() {
-            numAlternatives = parseInt(document.getElementById('numAlternatives').value);
-            
-            generateAHPMatrix();
-            generateAlternativeForms();
-            
-            document.getElementById('ahpSection').style.display = 'block';
-            document.getElementById('alternativesSection').style.display = 'block';
-        }
-
-        function generateAHPMatrix() {
-            let table = '<thead><tr><th>Criteria</th>';
-            for (let i = 0; i < NUM_CRITERIA; i++) {
-                table += `<th>${CRITERIA[i]}</th>`;
-            }
-            table += '</tr></thead><tbody>';
-
-            for (let i = 0; i < NUM_CRITERIA; i++) {
-                table += `<tr><th>${CRITERIA[i]}</th>`;
-                for (let j = 0; j < NUM_CRITERIA; j++) {
-                    if (i === j) {
-                        table += '<td>1</td>';
-                    } else if (i < j) {
-                        table += `<td><input type="number" id="ahp_${i}_${j}" value="1" min="0.111" max="9" step="0.001"></td>`;
-                    } else {
-                        table += `<td id="ahp_calc_${i}_${j}">1</td>`;
-                    }
-                }
-                table += '</tr>';
-            }
-            table += '</tbody>';
-            document.getElementById('ahpMatrix').innerHTML = table;
-
-            // Add event listeners for reciprocal calculation
-            for (let i = 0; i < NUM_CRITERIA; i++) {
-                for (let j = i + 1; j < NUM_CRITERIA; j++) {
-                    document.getElementById(`ahp_${i}_${j}`).addEventListener('input', function() {
-                        let value = parseFloat(this.value);
-                        if (value > 0) {
-                            document.getElementById(`ahp_calc_${j}_${i}`).textContent = (1/value).toFixed(3);
-                        }
-                    });
-                }
-            }
-        }
-
-        function generateAlternativeForms() {
-            let html = '';
-            for (let i = 0; i < numAlternatives; i++) {
-                html += `
-                <div class="alternative-card">
-                    <h4>SSD Alternative ${i + 1}</h4>
-                    <div class="form-grid">
-                        <div class="form-field">
-                            <label>Alternative Name:</label>
-                            <input type="text" id="alt_name_${i}" placeholder="e.g., Samsung 990 PRO" value="SSD ${i + 1}">
-                        </div>
-                        <div class="form-field">
-                            <label>Interface:</label>
-                            <select id="alt_interface_${i}">
-                                <option value="PCIe 3.0/NVMe" selected>PCIe 3.0/NVMe</option>
-                                <option value="PCIe 4.0/NVMe">PCIe 4.0/NVMe</option>
-                                <option value="PCIe 5.0/NVMe">PCIe 5.0/NVMe</option>
-                            </select>
-                        </div>
-                        <div class="form-field">
-                            <label>Capacity (GB):</label>
-                            <input type="number" id="alt_capacity_${i}" placeholder="e.g., 256" value="256" step="1">
-                        </div>
-                        <div class="form-field">
-                            <label>NAND Type:</label>
-                            <select id="alt_nand_${i}">
-                                <option value="QLC">QLC</option>
-                                <option value="TLC" selected>TLC</option>
-                                <option value="MLC">MLC</option>
-                                <option value="SLC">SLC</option>
-                            </select>
-                        </div>
-                        <div class="form-field">
-                            <label>Read Speed (MB/s):</label>
-                            <input type="number" id="alt_read_${i}" placeholder="e.g., 2100" value="2100" step="1">
-                        </div>
-                        <div class="form-field">
-                            <label>Write Speed (MB/s):</label>
-                            <input type="number" id="alt_write_${i}" placeholder="e.g., 2000" value="2000" step="1">
-                        </div>
-                        <div class="form-field">
-                            <label>Price:</label>
-                            <input type="number" id="alt_price_${i}" placeholder="e.g., 150000" value="100000" step="1000">
-                        </div>
-                        <div class="form-field">
-                            <label>Warranty (Years):</label>
-                            <input type="number" id="alt_warranty_${i}" placeholder="e.g., 5" value="5" step="0.1">
-                        </div>
-                    </div>
-                </div>`;
-            }
-            document.getElementById('alternativeForms').innerHTML = html;
-        }
-
-        async function calculateAHP() {
-            // Build pairwise comparison matrix
-            let matrix = [];
-            for (let i = 0; i < NUM_CRITERIA; i++) {
-                let row = [];
-                for (let j = 0; j < NUM_CRITERIA; j++) {
-                    if (i === j) {
-                        row.push(1);
-                    } else if (i < j) {
-                        let val = parseFloat(document.getElementById(`ahp_${i}_${j}`).value);
-                        row.push(val);
-                    } else {
-                        let val = parseFloat(document.getElementById(`ahp_calc_${i}_${j}`).textContent);
-                        row.push(val);
-                    }
-                }
-                matrix.push(row);
-            }
-
-            try {
-                const response = await fetch('/calculate_ahp', {
-                    method: 'POST',
-                    headers: {'Content-Type': 'application/json'},
-                    body: JSON.stringify({pairwise_matrix: matrix})
-                });
-
-                const data = await response.json();
-
-                if (data.success) {
-                    weights = data.weights;
-                    let resultsHTML = '<h3>AHP Results:</h3>';
-                    resultsHTML += '<div class="result-item"><strong>Criteria Weights:</strong><ul>';
-                    for (let i = 0; i < NUM_CRITERIA; i++) {
-                        resultsHTML += `<li><strong>${CRITERIA[i]}:</strong> ${weights[i].toFixed(4)} (${(weights[i]*100).toFixed(2)}%)</li>`;
-                    }
-                    resultsHTML += '</ul></div>';
-                    resultsHTML += `<div class="result-item"><strong>Lambda Max:</strong> ${data.lambda_max.toFixed(4)}</div>`;
-                    resultsHTML += `<div class="result-item"><strong>Consistency Ratio (CR):</strong> ${data.consistency_ratio.toFixed(4)}</div>`;
-                    
-                    if (data.is_consistent) {
-                        resultsHTML += `<div class="result-item success">✓ Matrix is CONSISTENT (CR < 0.1)</div>`;
-                        document.getElementById('topsisSection').style.display = 'block';
-                    } else {
-                        resultsHTML += `<div class="result-item warning">⚠ Matrix is INCONSISTENT (CR ≥ 0.1). Please revise your comparisons.</div>`;
-                    }
-
-                    document.getElementById('ahpResults').innerHTML = resultsHTML;
-                    document.getElementById('ahpResults').style.display = 'block';
-                } else {
-                    alert('Error: ' + data.error);
-                }
-            } catch (error) {
-                alert('Error calculating AHP: ' + error);
-            }
-        }
-
-        async function calculateTOPSIS() {
-            if (weights.length === 0) {
-                alert('Please calculate AHP weights first!');
-                return;
-            }
-
-            // Collect all alternative data
-            let rawData = [];
-            for (let i = 0; i < numAlternatives; i++) {
-                rawData.push({
-                    name: document.getElementById(`alt_name_${i}`).value,
-                    interface: document.getElementById(`alt_interface_${i}`).value,
-                    capacity: document.getElementById(`alt_capacity_${i}`).value,
-                    nand_type: document.getElementById(`alt_nand_${i}`).value,
-                    read: document.getElementById(`alt_read_${i}`).value,
-                    write: document.getElementById(`alt_write_${i}`).value,
-                    price: document.getElementById(`alt_price_${i}`).value,
-                    warranty: document.getElementById(`alt_warranty_${i}`).value
-                });
-            }
-
-            try {
-                const response = await fetch('/calculate_topsis', {
-                    method: 'POST',
-                    headers: {'Content-Type': 'application/json'},
-                    body: JSON.stringify({
-                        raw_data: rawData,
-                        weights: weights
-                    })
-                });
-
-                const data = await response.json();
-
-                if (data.success) {
-                    displayTOPSISResults(data.results, rawData);
-                } else {
-                    alert('Error: ' + data.error);
-                }
-            } catch (error) {
-                alert('Error calculating TOPSIS: ' + error);
-            }
-        }
-
-        function displayTOPSISResults(results, rawData) {
-            let resultsHTML = '<h3>TOPSIS Results:</h3>';
-            
-            // Final Ranking Table
-            resultsHTML += '<div class="result-item"><strong>🏆 Final Rankings:</strong>';
-            resultsHTML += '<table class="ranking-table"><thead><tr><th>Rank</th><th>SSD Model</th><th>Closeness Score</th><th>Interface</th><th>Capacity</th><th>NAND</th><th>Read</th><th>Write</th><th>Price</th><th>Warranty</th></tr></thead><tbody>';
-            
-            let rankData = [];
-            for (let i = 0; i < numAlternatives; i++) {
-                rankData.push({
-                    index: i,
-                    name: rawData[i].name,
-                    interface: rawData[i].interface,
-                    capacity: rawData[i].capacity,
-                    nand: rawData[i].nand_type,
-                    read: rawData[i].read,
-                    write: rawData[i].write,
-                    price: rawData[i].price,
-                    warranty: rawData[i].warranty,
-                    closeness: results.closeness[i],
-                    rank: results.ranks[i]
-                });
-            }
-            rankData.sort((a, b) => a.rank - b.rank);
-
-            for (let item of rankData) {
-                let rowClass = '';
-                if (item.rank === 1) rowClass = 'rank-1';
-                else if (item.rank === 2) rowClass = 'rank-2';
-                else if (item.rank === 3) rowClass = 'rank-3';
-                
-                resultsHTML += `<tr class="${rowClass}">
-                    <td><strong>${item.rank}</strong></td>
-                    <td><strong>${item.name}</strong></td>
-                    <td>${item.closeness.toFixed(4)}</td>
-                    <td>${item.interface}</td>
-                    <td>${item.capacity} GB</td>
-                    <td>${item.nand}</td>
-                    <td>${item.read} MB/s</td>
-                    <td>${item.write} MB/s</td>
-                    <td>${parseFloat(item.price).toLocaleString()}</td>
-                    <td>${item.warranty} years</td>
-                </tr>`;
-            }
-            resultsHTML += '</tbody></table></div>';
-
-            resultsHTML += '</ul></div>';
-
-            document.getElementById('topsisResults').innerHTML = resultsHTML;
-            document.getElementById('topsisResults').style.display = 'block';
-        }
-
-        // Initialize on page load
-        window.onload = function() {
-            generateForms();
-        };
-    </script>
+    <script src="{{ url_for('static', filename='scripts/landing.js') }}"></script>
 </body>
 </html>

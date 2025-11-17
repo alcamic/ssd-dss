@@ -144,6 +144,10 @@ def map_nand_type(value):
 
 @app.route('/')
 def index():
+    return render_template('index.html')
+
+@app.route('/page1')
+def page1():
     return render_template('page1_ahp.html')
 
 @app.route('/page2')
