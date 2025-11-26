@@ -10,6 +10,18 @@ const SAMPLE_DATA = [
     { name: "WD Blue SN750", interface: "PCIe 3.0/NVMe", capacity: 250, nand: "TLC", read: 3300, write: 1200, price: 400000, warranty: 5 },
     { name: "Gigabyte NVMe", interface: "PCIe 3.0/NVMe", capacity: 256, nand: "TLC", read: 1700, write: 1100, price: 479000, warranty: 5 },
     { name: "MSI M450", interface: "PCIe 4.0/NVMe", capacity: 250, nand: "TLC", read: 3600, write: 3000, price: 692445, warranty: 5 },
+    { name: "Patriot P300", interface: "PCIe 3.0/NVMe", capacity: 256, nand: "TLC", read: 2100, write: 1650, price: 485000, warranty: 3 },
+    { name: "PNY CS1030", interface: "PCIe 3.0/NVMe", capacity: 256, nand: "TLC", read: 2100, write: 1900, price: 350000, warranty: 5 },
+    { name: "Silicon Power P34A", interface: "PCIe 3.0/NVMe", capacity: 256, nand: "TLC", read: 2200, write: 1600, price: 480000, warranty: 5 },
+    { name: "Team MP33", interface: "PCIe 3.0/NVMe", capacity: 256, nand: "TLC", read: 1800, write: 1500, price: 391000, warranty: 5 },
+    { name: "Team Z44L", interface: "PCIe 4.0/NVMe", capacity: 250, nand: "TLC", read: 3500, write: 3000, price: 545000, warranty: 5 },
+    { name: "WD SN550", interface: "PCIe 3.0/NVMe", capacity: 250, nand: "TLC", read: 2400, write: 1950, price: 525000, warranty: 5 },
+    { name: "ADATA Legend 710", interface: "PCIe 3.0/NVMe", capacity: 256, nand: "QLC", read: 2100, write: 1000, price: 367000, warranty: 3 },
+    { name: "Lexar NM620", interface: "PCIe 3.0/NVMe", capacity: 256, nand: "TLC", read: 3300, write: 1300, price: 446500, warranty: 5 },
+    { name: "Kingston NV1", interface: "PCIe 3.0/NVMe", capacity: 250, nand: "QLC", read: 2100, write: 1700, price: 489000, warranty: 3 },
+    { name: "RX7 NVMe", interface: "PCIe 3.0/NVMe", capacity: 256, nand: "TLC", read: 2400, write: 1700, price: 383000, warranty: 3 },
+    { name: "Kyo X30", interface: "PCIe 3.0/NVMe", capacity: 256, nand: "TLC", read: 3200, write: 1350, price: 420000, warranty: 5 },
+    { name: "PNY CS1031", interface: "PCIe 3.0/NVMe", capacity: 256, nand: "TLC", read: 1700, write: 1100, price: 445000, warranty: 5 },
 ];
 
 function loadWeights() {
