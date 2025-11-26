@@ -10,18 +10,6 @@ const SAMPLE_DATA = [
     { name: "WD Blue SN750", interface: "PCIe 3.0/NVMe", capacity: 250, nand: "TLC", read: 3300, write: 1200, price: 400000, warranty: 5 },
     { name: "Gigabyte NVMe", interface: "PCIe 3.0/NVMe", capacity: 256, nand: "TLC", read: 1700, write: 1100, price: 479000, warranty: 5 },
     { name: "MSI M450", interface: "PCIe 4.0/NVMe", capacity: 250, nand: "TLC", read: 3600, write: 3000, price: 692445, warranty: 5 },
-    { name: "Patriot P300", interface: "PCIe 3.0/NVMe", capacity: 256, nand: "TLC", read: 2100, write: 1650, price: 485000, warranty: 3 },
-    { name: "PNY CS1030", interface: "PCIe 3.0/NVMe", capacity: 256, nand: "TLC", read: 2100, write: 1900, price: 350000, warranty: 5 },
-    { name: "Silicon Power P34A", interface: "PCIe 3.0/NVMe", capacity: 256, nand: "TLC", read: 2200, write: 1600, price: 480000, warranty: 5 },
-    { name: "Team MP33", interface: "PCIe 3.0/NVMe", capacity: 256, nand: "TLC", read: 1800, write: 1500, price: 391000, warranty: 5 },
-    { name: "Team Z44L", interface: "PCIe 4.0/NVMe", capacity: 250, nand: "TLC", read: 3500, write: 3000, price: 545000, warranty: 5 },
-    { name: "WD SN550", interface: "PCIe 3.0/NVMe", capacity: 250, nand: "TLC", read: 2400, write: 1950, price: 525000, warranty: 5 },
-    { name: "ADATA Legend 710", interface: "PCIe 3.0/NVMe", capacity: 256, nand: "QLC", read: 2100, write: 1000, price: 367000, warranty: 3 },
-    { name: "Lexar NM620", interface: "PCIe 3.0/NVMe", capacity: 256, nand: "TLC", read: 3300, write: 1300, price: 446500, warranty: 5 },
-    { name: "Kingston NV1", interface: "PCIe 3.0/NVMe", capacity: 250, nand: "QLC", read: 2100, write: 1700, price: 489000, warranty: 3 },
-    { name: "RX7 NVMe", interface: "PCIe 3.0/NVMe", capacity: 256, nand: "TLC", read: 2400, write: 1700, price: 383000, warranty: 3 },
-    { name: "Kyo X30", interface: "PCIe 3.0/NVMe", capacity: 256, nand: "TLC", read: 3200, write: 1350, price: 420000, warranty: 5 },
-    { name: "PNY CS1031", interface: "PCIe 3.0/NVMe", capacity: 256, nand: "TLC", read: 1700, write: 1100, price: 445000, warranty: 5 },
 ];
 
 function loadWeights() {
@@ -270,34 +258,174 @@ function populateFormsFromData(data) {
 function downloadTemplate(type) {
     const templateData = [
         {
-            'Name': 'Samsung 990 PRO',
-            'Interface': 'PCIe 4.0/NVMe',
-            'Capacity': 512,
+            'Name': 'ADATA SX6000 Pro',
+            'Interface': 'PCIe 3.0/NVMe',
+            'Capacity': 256,
             'NAND Type': 'TLC',
-            'Read': 7450,
-            'Write': 6900,
-            'Price': 1200000,
+            'Read': 2100,
+            'Write': 1500,
+            'Price': 425000,
             'Warranty': 5
         },
         {
-            'Name': 'WD Black SN850X',
-            'Interface': 'PCIe 4.0/NVMe',
-            'Capacity': 500,
+            'Name': 'Apacer AS2280P4',
+            'Interface': 'PCIe 3.0/NVMe',
+            'Capacity': 256,
             'NAND Type': 'TLC',
-            'Read': 7300,
-            'Write': 6600,
-            'Price': 1150000,
-            'Warranty': 5
-        },
-        {
-            'Name': 'Kingston NV2',
-            'Interface': 'PCIe 4.0/NVMe',
-            'Capacity': 500,
-            'NAND Type': 'QLC',
-            'Read': 3500,
-            'Write': 2800,
-            'Price': 650000,
+            'Read': 2100,
+            'Write': 1000,
+            'Price': 380000,
             'Warranty': 3
+        },
+        {
+            'Name': 'WD Blue SN750',
+            'Interface': 'PCIe 3.0/NVMe',
+            'Capacity': 250,
+            'NAND Type': 'TLC',
+            'Read': 3300,
+            'Write': 1200,
+            'Price': 400000,
+            'Warranty': 5
+        },
+        {
+            'Name': 'Gigabyte NVMe',
+            'Interface': 'PCIe 3.0/NVMe',
+            'Capacity': 256,
+            'NAND Type': 'TLC',
+            'Read': 1700,
+            'Write': 1100,
+            'Price': 479000,
+            'Warranty': 5
+        },
+        {
+            'Name': 'MSI M450',
+            'Interface': 'PCIe 4.0/NVMe',
+            'Capacity': 250,
+            'NAND Type': 'TLC',
+            'Read': 3600,
+            'Write': 3000,
+            'Price': 692445,
+            'Warranty': 5
+        },
+        {
+            'Name': 'Patriot P300',
+            'Interface': 'PCIe 3.0/NVMe',
+            'Capacity': 256,
+            'NAND Type': 'TLC',
+            'Read': 2100,
+            'Write': 1650,
+            'Price': 485000,
+            'Warranty': 3
+        },
+        {
+            'Name': 'PNY CS1030',
+            'Interface': 'PCIe 3.0/NVMe',
+            'Capacity': 256,
+            'NAND Type': 'TLC',
+            'Read': 2100,
+            'Write': 1900,
+            'Price': 350000,
+            'Warranty': 5
+        },
+        {
+            'Name': 'Silicon Power P34A',
+            'Interface': 'PCIe 3.0/NVMe',
+            'Capacity': 256,
+            'NAND Type': 'TLC',
+            'Read': 2200,
+            'Write': 1600,
+            'Price': 480000,
+            'Warranty': 5
+        },
+        {
+            'Name': 'Team MP33',
+            'Interface': 'PCIe 3.0/NVMe',
+            'Capacity': 256,
+            'NAND Type': 'TLC',
+            'Read': 1800,
+            'Write': 1500,
+            'Price': 391000,
+            'Warranty': 5
+        },
+        {
+            'Name': 'Team Z44L',
+            'Interface': 'PCIe 4.0/NVMe',
+            'Capacity': 250,
+            'NAND Type': 'TLC',
+            'Read': 3500,
+            'Write': 3000,
+            'Price': 545000,
+            'Warranty': 5
+        },
+        {
+            'Name': 'WD SN550',
+            'Interface': 'PCIe 3.0/NVMe',
+            'Capacity': 250,
+            'NAND Type': 'TLC',
+            'Read': 2400,
+            'Write': 1950,
+            'Price': 525000,
+            'Warranty': 5
+        },
+        {
+            'Name': 'ADATA Legend 710',
+            'Interface': 'PCIe 3.0/NVMe',
+            'Capacity': 256,
+            'NAND Type': 'QLC',
+            'Read': 2100,
+            'Write': 1000,
+            'Price': 367000,
+            'Warranty': 3
+        },
+        {
+            'Name': 'Lexar NM620',
+            'Interface': 'PCIe 3.0/NVMe',
+            'Capacity': 256,
+            'NAND Type': 'TLC',
+            'Read': 3300,
+            'Write': 1300,
+            'Price': 446500,
+            'Warranty': 5
+        },
+        {
+            'Name': 'Kingston NV1',
+            'Interface': 'PCIe 3.0/NVMe',
+            'Capacity': 250,
+            'NAND Type': 'QLC',
+            'Read': 2100,
+            'Write': 1700,
+            'Price': 489000,
+            'Warranty': 3
+        },
+        {
+            'Name': 'RX7 NVMe',
+            'Interface': 'PCIe 3.0/NVMe',
+            'Capacity': 256,
+            'NAND Type': 'TLC',
+            'Read': 2400,
+            'Write': 1700,
+            'Price': 383000,
+            'Warranty': 3
+        },
+        {
+            'Name': 'Kyo X30',
+            'Interface': 'PCIe 3.0/NVMe',
+            'Capacity': 256,
+            'NAND Type': 'TLC',
+            'Read': 3200,
+            'Write': 1350,
+            'Price': 420000,
+            'Warranty': 5
+        },
+        {
+            'Name': 'PNY CS1031',
+            'Interface': 'PCIe 3.0/NVMe',
+            'Capacity': 256,
+            'NAND Type': 'TLC',
+            'Read': 1700,
+            'Write': 1100,
+            'Price': 445000,
+            'Warranty': 5
         }
     ];
 
